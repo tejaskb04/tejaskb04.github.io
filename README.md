@@ -1,4 +1,8 @@
-## Welcome to GitHub Pages
+## About the project/competition: 
+For our project we decided to use the Kaggle competition about classifying various bird categories. Given 555 different categories of birds, the challenge is to train a supervised machine learning model that is able to detect the category/class of a given image of a bird. The dataset contains about ~38000 images distributed unevenly between the 555 classes. Furthermore, there is not a unique image size for the training data and each image comes in a different dimension. These images are taken from birds in various geographical locations (land, tree, air) with the bird either flying or sitting still.
+
+Our first approach to this problem was to use Transfer Learning to have a better shot at tackling this problem than starting from scratch. After reading a bit more on Pytorch pretrained models and looking at some examples and considering the resources (GPU) and time we have, we decided to work on training resnet50 as our base model. After 15 epochs and before the model starts overfitting, we got around 50% accuracy on the test data on the Kaggle competition which is not super good. Therefore, we decided to focus a bit more on balancing the training data first before starting to fine-tune anymore models.
+
 
 You can use the [editor on GitHub](https://github.com/tejaskb04/tejaskb04.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
 
