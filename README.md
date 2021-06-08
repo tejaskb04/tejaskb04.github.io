@@ -25,13 +25,13 @@ After balancing the data, we decided to return to fine-tuning pre-trained models
 | Model           | Accuracy |
 | GoogLeNet       | 0.410    |
 | resnet 151      | 0.683    |  
-| densenet 169.   | 0.776    | 
+| densenet 169    | 0.776    | 
 | vgg_bn19        | 0.693    |
 | resNext         | 0.735    |
 | Output Stacking | 0.664    |
 | Ensembling      | 0.831    |
 
-As you can see our densenet151 model gives the best performance on the test data provided. However, as we can see in the table, other models are performing around the same ballpark and we were curious what would happen if we somehow combined the output of these models to achieve better accuracy. In the next experiment, we will discuss two interesting ideas that we tried (Ensembling and Output Stacking) and their results.
+As you can see our densenet169 model gives the best performance on the test data provided. However, as we can see in the table, other models are performing around the same ballpark and we were curious what would happen if we somehow combined the output of these models to achieve better accuracy. In the next experiment, we will discuss two interesting ideas that we tried (Ensembling and Output Stacking) and their results.
 ![alt text](pastedimage0.png)
 <center>DenseNet</center>
 ![alt text](pastedimage1.png)
