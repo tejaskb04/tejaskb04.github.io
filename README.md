@@ -24,6 +24,10 @@ After balancing the data, we decided to return to fine-tuning pre-trained models
 
 As you can see our densenet151 model gives the best performance on the test data provided. However, as we can see in the table, other models are performing around the same ballpark and we were curious what would happen if we somehow combined the output of these models to achieve better accuracy. In the next experiment, we will discuss two interesting ideas that we tried (Ensembling and Output Stacking) and their results.
 ![alt text](https://github.com/tejaskb04/tejaskb04.github.io/blob/main/pastedimage0.png)
+![alt text](https://github.com/tejaskb04/tejaskb04.github.io/blob/main/pastedimage1.png)
+![alt text](https://github.com/tejaskb04/tejaskb04.github.io/blob/main/pastedimage2.png)
+![alt text](https://github.com/tejaskb04/tejaskb04.github.io/blob/main/pastedimage3.png)
+sup
 
 ### Markdown
 
