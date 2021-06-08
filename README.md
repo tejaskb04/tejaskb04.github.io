@@ -1,9 +1,6 @@
-## Team: Tweety
+## Team:Tweety
 ### Members: 
-Conrad Ciszek
-Amir Mola
-Jose Becerra
-Tejas Bharadwaj
+Conrad Ciszek, Amir Mola, Jose Becerra, Tejas Bharadwaj
 
 ## About the project/competition: 
 For our project we decided to use the Kaggle competition about classifying various bird categories. Given 555 different categories of birds, the challenge is to train a supervised machine learning model that is able to detect the category/class of a given image of a bird. The dataset contains about ~38000 images distributed unevenly between the 555 classes. Furthermore, there is not a unique image size for the training data and each image comes in a different dimension. These images are taken from birds in various geographical locations (land, tree, air) with the bird either flying or sitting still.
@@ -12,7 +9,8 @@ Our first approach to this problem was to use Transfer Learning to have a better
 
 ## Upsampling:
 To help boost accuracy of our model and account for overfitting we incorporated a technique called upsampling. Here we went through all the files of the 555 different birds and found the maximum number of images in each folder (106). By taking advantage of the Transforms library in Pytorch, we generated transformed images based on the existing images to increase the number of bird images in each class to the maximum number we got in the previous step. This approach was mainly done to ensure that we have the same number of images in each category and our data is balanced. Some transformations we utilized were random choices of: a horizontal flip, random rotation, and a random grayscale of an image. We did this in hopes of generating more useful data for the model to boost accuracy. Some examples of these transformations can be seen below: 
-
+![alt text](bird0.png)
+![alt text](bird1.png)
 ## More PreTrained Models:
 After balancing the data, we decided to return to fine-tuning pre-trained models to improve our accuracy. After reading more about Pytorch pretrained models, we decided to try resnet151, Densenet169, resNext and vgg_bn19. We trained each of these models separately with the new balanced training data and our accuracy results are as follows:
 
