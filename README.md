@@ -16,11 +16,13 @@ To help boost accuracy of our model and account for overfitting we incorporated 
 ## More PreTrained Models:
 After balancing the data, we decided to return to fine-tuning pre-trained models to improve our accuracy. After reading more about Pytorch pretrained models, we decided to try resnet151, Densenet169, resNext and vgg_bn19. We trained each of these models separately with the new balanced training data and our accuracy results are as follows:
 
-| Model     | Accuracy |
-| resnet 151        |    :----: | 
-| densenet 151      | Title       | 
-| vgg_bn19   | Text |
-| resNext | sss |
+| Model       | Accuracy |
+| resnet 151  | 0.683    |  
+| densenet 151| 0.776    | 
+| vgg_bn19    | 0.693    |
+| resNext     | 0.735    |
+
+As you can see our densenet151 model gives the best performance on the test data provided. However, as we can see in the table, other models are performing around the same ballpark and we were curious what would happen if we somehow combined the output of these models to achieve better accuracy. In the next experiment, we will discuss two interesting ideas that we tried (Ensembling and Output Stacking) and their results.
 
 ### Markdown
 
