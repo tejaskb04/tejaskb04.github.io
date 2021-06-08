@@ -23,7 +23,7 @@ transforms.Compose([
 After balancing the data, we decided to return to fine-tuning pre-trained models to improve our accuracy. After reading more about Pytorch pretrained models, we decided to try resnet151, Densenet169, resNext and vgg_bn19. We trained each of these models separately with the new balanced training data and our accuracy results are as follows:
 
 | Model       | Accuracy |
-| GoogLeNet.  | 0.410    |
+| GoogLeNet   | 0.410    |
 | resnet 151  | 0.683    |  
 | densenet 151| 0.776    | 
 | vgg_bn19    | 0.693    |
