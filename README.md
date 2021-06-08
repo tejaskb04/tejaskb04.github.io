@@ -25,7 +25,7 @@ After balancing the data, we decided to return to fine-tuning pre-trained models
 | Model           | Accuracy |
 | GoogLeNet       | 0.410    |
 | resnet 151      | 0.683    |  
-| densenet 151.   | 0.776    | 
+| densenet 169.   | 0.776    | 
 | vgg_bn19        | 0.693    |
 | resNext         | 0.735    |
 | Output Stacking | 0.664    |
@@ -41,7 +41,7 @@ As you can see our densenet151 model gives the best performance on the test data
 <center>VGG, GoogLeNet, and ResNet</center>
 
 ## Output Stacking:
-Now that we have tried training 4 different models, we wanted to see what would happen if we train these models at the same time and instead of changing the output dimension of the last layer of each model to 555, we create our own fully connected layer. In other words, we initialized three models (resnet151, descent151, vgg_bn19) and in our forward method, we ran each batch of input through each model separately and stacked the outputs and passed it to a fully connected layer that we constructed. For purposes of this experiment, our FC layer takes a tensor of size 3000 and outputs a tensor of 555. Our original thoughts were that this way, we can capture various features explored by all of these models, rather than just 1 and train our FC model to be able to correlate these features to one of the 555 classes. Unfortunately, after training this model, we saw that it easily overfits on the training data and we are not able to get an accuracy above 0.664. This could be due to the fact that our models are now capturing too much information and therefore, are overfitting faster to the training data and cannot reason about test data very well. 
+Now that we have tried training 4 different models, we wanted to see what would happen if we train these models at the same time and instead of changing the output dimension of the last layer of each model to 555, we create our own fully connected layer. In other words, we initialized three models (resnet151, densenet169, vgg_bn19) and in our forward method, we ran each batch of input through each model separately and stacked the outputs and passed it to a fully connected layer that we constructed. For purposes of this experiment, our FC layer takes a tensor of size 3000 and outputs a tensor of 555. Our original thoughts were that this way, we can capture various features explored by all of these models, rather than just 1 and train our FC model to be able to correlate these features to one of the 555 classes. Unfortunately, after training this model, we saw that it easily overfits on the training data and we are not able to get an accuracy above 0.664. This could be due to the fact that our models are now capturing too much information and therefore, are overfitting faster to the training data and cannot reason about test data very well. 
 
 ## Ensembling:
 Surprised by the overfitting of the previous method, we decided to still use multiple models for inference but instead of stacking their outputs, we simply take the average of their outputs. In other words, for each given image, we get the output tensor of size 555 from 3 models (resnet151, densenet169, resnext) and then take the average of those 3 tensors. This way each of these models' probability is contributing equally to the final probability tensor, which we take the max and determine the class of the given image. Using this method, we arrived at our all time best accuracy of 0.831. Unfortunately we were not able to improve upon this accuracy no matter which model or additional methods we proposed.
