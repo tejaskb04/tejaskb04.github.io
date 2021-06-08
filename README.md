@@ -34,6 +34,7 @@ As you can see our densenet151 model gives the best performance on the test data
 ![alt text](pastedimage1.png)
 ![alt text](pastedimage2.png)
 ![alt text](pastedimage3.png)
+<center>VGG, GoogLeNet, and ResNet</center>
 
 ## Output Stacking:
 Now that we have tried training 4 different models, we wanted to see what would happen if we train these models at the same time and instead of changing the output dimension of the last layer of each model to 555, we create our own fully connected layer. In other words, we initialized three models (resnet151, descent151, vgg_bn19) and in our forward method, we ran each batch of input through each model separately and stacked the outputs and passed it to a fully connected layer that we constructed. For purposes of this experiment, our FC layer takes a tensor of size 3000 and outputs a tensor of 555. Our original thoughts were that this way, we can capture various features explored by all of these models, rather than just 1 and train our FC model to be able to correlate these features to one of the 555 classes. Unfortunately, after training this model, we saw that it easily overfits on the training data and we are not able to get an accuracy above 0.664. This could be due to the fact that our models are now capturing too much information and therefore, are overfitting faster to the training data and cannot reason about test data very well. 
