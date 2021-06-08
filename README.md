@@ -9,6 +9,14 @@ Our first approach to this problem was to use Transfer Learning to have a better
 
 ## Upsampling:
 To help boost accuracy of our model and account for overfitting we incorporated a technique called upsampling. Here we went through all the files of the 555 different birds and found the maximum number of images in each folder (106). By taking advantage of the Transforms library in Pytorch, we generated transformed images based on the existing images to increase the number of bird images in each class to the maximum number we got in the previous step. This approach was mainly done to ensure that we have the same number of images in each category and our data is balanced. Some transformations we utilized were random choices of: a horizontal flip, random rotation, and a random grayscale of an image. We did this in hopes of generating more useful data for the model to boost accuracy. Some examples of these transformations can be seen below: 
+```
+transforms.Compose([
+   transforms.RandomChoice([
+   transforms.RandomHorizontalFlip(),
+   transforms.RandomRotation(degrees=45),
+   transforms.RandomGrayscale(p=0.2),
+   ])
+```
 ![alt text](bird0.png)
 ![alt text](bird1.png)
 ## More PreTrained Models:
