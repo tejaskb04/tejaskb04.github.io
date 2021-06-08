@@ -25,38 +25,16 @@ After balancing the data, we decided to return to fine-tuning pre-trained models
 As you can see our densenet151 model gives the best performance on the test data provided. However, as we can see in the table, other models are performing around the same ballpark and we were curious what would happen if we somehow combined the output of these models to achieve better accuracy. In the next experiment, we will discuss two interesting ideas that we tried (Ensembling and Output Stacking) and their results.
 ![alt text](pastedimage0.png)
 ![alt text](pastedimage1.png)
-![alt text](https://github.com/tejaskb04/tejaskb04.github.io/blob/main/pastedimage2.png)
-![alt text](https://github.com/tejaskb04/tejaskb04.github.io/blob/main/pastedimage3.png)
-sup
+![alt text](pastedimage2.png)
+![alt text](pastedimage3.png)
 
-### Markdown
+## Output Stacking:
+Now that we have tried training 4 different models, we wanted to see what would happen if we train these models at the same time and instead of changing the output dimension of the last layer of each model to 555, we create our own fully connected layer. In other words, we initialized three models (resnet151, descent151, vgg_bn19) and in our forward method, we ran each batch of input through each model separately and stacked the outputs and passed it to a fully connected layer that we constructed. For purposes of this experiment, our FC layer takes a tensor of size 3000 and outputs a tensor of 555. Our original thoughts were that this way, we can capture various features explored by all of these models, rather than just 1 and train our FC model to be able to correlate these features to one of the 555 classes. Unfortunately, after training this model, we saw that it easily overfits on the training data and we are not able to get an accuracy above 0.664. This could be due to the fact that our models are now capturing too much information and therefore, are overfitting faster to the training data and cannot reason about test data very well. 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Ensembling:
+Surprised by the overfitting of the previous method, we decided to still use multiple models for inference but instead of stacking their outputs, we simply take the average of their outputs. In other words, for each given image, we get the output tensor of size 555 from 3 models (resnet151, densenet169, resnext) and then take the average of those 3 tensors. This way each of these models' probability is contributing equally to the final probability tensor, which we take the max and determine the class of the given image. Using this method, we arrived at our all time best accuracy of 0.831. Unfortunately we were not able to improve upon this accuracy no matter which model or additional methods we proposed.
 
-```markdown
-Syntax highlighted code block
+## Conclusion:
+What we learned during this project is that machine learning with images takes a lot of time and a lot of computing power. We were primarily using colab for most of the project and started to hit walls with the gpu times. We learned about utilizing various techniques such as upsamples and ensembling as described above. For a few of us it was our first time using Pytorch as well which was an interesting experience. 
+	During this project we also ran into some problems. There was the issue of running out of gpu computing time on colab and super long runtimes. To resolve this we had one of our group mates ssh into the CSE servers and utilize their GPUs. Another issue we had was when our model was trying to read a blank image. We believe this came from the transformations not executing correctly with one of the images. Removing that image resolved this issue. An image of the error can be seen below.
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/tejaskb04/tejaskb04.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
